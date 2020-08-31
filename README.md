@@ -1,7 +1,7 @@
 # casa-corrently-influxdb-source
 Casa Corrently Source Driver for InfluxDB backend
 
-![npm](https://img.shields.io/npm/dw/casa-corrently-influxdb-source) [![Build Status](https://travis-ci.com/energychain/casa-corrently-influxdb-source.svg?branch=master)](https://travis-ci.com/energychain/casa-corrently-influxdb-source) [![Code Quality](https://www.code-inspector.com/project/12360/score/svg)](https://frontend.code-inspector.com/public/project/12360/node-red-contrib-discovergy-meter/dashboard) [![chat](https://img.shields.io/badge/chat-support-brightgreen)](https://tawk.to/chat/5c53189451410568a109843f/default)
+![npm](https://img.shields.io/npm/dw/casa-corrently-influxdb-source) [![Build Status](https://travis-ci.com/energychain/casa-corrently-influxdb-source.svg?branch=master)](https://travis-ci.com/energychain/casa-corrently-influxdb-source) [![Code Quality](https://www.code-inspector.com/project/12872/score/svg)](https://frontend.code-inspector.com/public/project/12872/casa-corrently-influxdb-source/dashboard) [![chat](https://img.shields.io/badge/chat-support-brightgreen)](https://tawk.to/chat/5c53189451410568a109843f/default)
 
 ## Installation
 
