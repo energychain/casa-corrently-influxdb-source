@@ -23,10 +23,10 @@ const boot = async function() {
     config.uuid = (""+config.uuid).substring(2) + (Math.random());
   }
   const main = await CasaCorrently();
-  config.staticFiles = './node_modules/node-red-contrib-discovergy-meter/public'
+  config.staticFiles = './node_modules/node-red-contrib-discovergy-meter/public';
   config.source = __dirname + '/index.js';
 
   await main.server(config);
-}
+};
 
 boot();

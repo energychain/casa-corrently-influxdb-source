@@ -18,7 +18,7 @@ const _influx = function(node) {
        ]
      }
    ]
-  })
+ });
 };
 
 module.exports = {
@@ -52,7 +52,7 @@ module.exports = {
 
         }).catch(err => {
           reject(err.stack);
-        })
+        });
     });
   },
   historicReading: async function(meterId,resolution,from,to,node) {
@@ -98,7 +98,7 @@ module.exports = {
         }
       }).catch(err => {
         reject(err.stack);
-      })
+      });
     });
   },
   meters: async function(node) {
@@ -129,4 +129,4 @@ module.exports = {
     });
     return responds;
   }
-}
+};
