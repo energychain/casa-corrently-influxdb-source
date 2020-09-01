@@ -6,6 +6,7 @@ const _influx = function(node) {
   return new Influx.InfluxDB({
    host: node.config.influxhost,
    database: node.config.influxdb,
+   port:node.config.influxport,
    schema: [
      {
        measurement: node.influxmeasurement,
@@ -59,12 +60,19 @@ module.exports = {
     return new Promise(function (resolve, reject)  {
       if(typeof node.config == 'undefined') node.config = node;
       let scaleFactor = 1000*10000000;
+      if(typeof node.config.scaleFactor !== 'undefined') scaleFactor = node.config.scaleFactor;
       let fieldin = node.config.influx_feedin_field;
       let fieldout = node.config.influx_feedout_field;
       let measurement = node.config.influx_feedin_measurement;
 
+      if(meterId == 'influx-prod') {
+        fieldin = node.config.influx_prod_field;
+        delete fieldout;
+        measurement = node.config.influx_prod_measurement;
+      }
+
       if((typeof node.config !== 'undefined') && (typeof node.config.scaleFactor !== 'undefined')) scaleFactor = node.config.scaleFactor;
-      _influx(node).query("SELECT first("+fieldin+") as firstEnergy,last("+fieldin+") as lastEnergy FROM "+measurement+" WHERE time>'"+new Date(from).toISOString()+"'  AND  time<'"+new Date(to).toISOString()+"' LIMIT 1000").then(result => {
+      _influx(node).query('SELECT first("'+fieldin+'") as firstEnergy,last("'+fieldin+'") as lastEnergy FROM "'+measurement+'" WHERE time>\''+new Date(from).toISOString()+'\'  AND  time<\''+new Date(to).toISOString()+'\' LIMIT 1000').then(result => {
         if(result.length < 1 ) {
             resolve([]);
         } else {
@@ -85,7 +93,7 @@ module.exports = {
               }
           });
           if(typeof fieldout !== 'undefined') {
-            _influx(node).query("SELECT first("+fieldout+") as firstEnergy,last("+fieldout+") as lastEnergy FROM "+measurement+" WHERE time>'"+new Date(from).toISOString()+"'  AND  time<'"+new Date(to).toISOString()+"' LIMIT 1000").then(result => {
+            _influx(node).query('SELECT first("'+fieldout+'") as firstEnergy,last("'+fieldout+'") as lastEnergy FROM '+measurement+' WHERE time>\''+new Date(from).toISOString()+'\'  AND  time<\''+new Date(to).toISOString()+'\' LIMIT 1000').then(result => {
               if(result.length < 1 ) {
                   resolve(responds);
               } else {

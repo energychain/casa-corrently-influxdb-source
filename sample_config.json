@@ -47,6 +47,7 @@
    "community":"demo",
    "influxhost": "172.29.255.98",
    "influxdb": "casacorrently",
+   "influxport": 8086,
    "influx_feedin_measurement": "engion",
    "influx_feedin_field": "total_saving",
    "influx_feedout_measurement": "engion",
