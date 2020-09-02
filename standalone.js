@@ -1,4 +1,4 @@
-const CasaCorrently = require("node-red-contrib-discovergy-meter");
+const CasaCorrently = require("casa-corrently");
 const fs = require("fs");
 
 const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));

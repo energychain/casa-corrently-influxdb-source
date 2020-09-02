@@ -1,6 +1,6 @@
 {
   "name": "casa-corrently-influxdb-source",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Casa Corrently Source Driver for InfluxDB enabled meters",
   "main": "index.js",
   "scripts": {
