@@ -23,7 +23,7 @@
   "homepage": "https://github.com/energychain/casa-corrently-influxdb-source#readme",
   "dependencies": {
     "influx": "^5.6.3",
-    "casa-corrently": "^0.6.5"
+    "casa-corrently": "*"
   },
   "devDependencies": {
     "mocha": "^8.1.3"
