@@ -1,11 +1,11 @@
 {
   "name": "casa-corrently-influxdb-source",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Casa Corrently Source Driver for InfluxDB enabled meters",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "npm install node-red-contrib-discovergy-meter; node standalone.js"
+    "start": "npm install casa-corrently; node standalone.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/energychain/casa-corrently-influxdb-source#readme",
   "dependencies": {
     "influx": "^5.6.3",
-    "node-red-contrib-discovergy-meter": "^0.6.5"
+    "casa-corrently": "^0.6.5"
   },
   "devDependencies": {
     "mocha": "^8.1.3"
