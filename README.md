@@ -16,6 +16,10 @@ cd casa-Corrently
 npm install
 ```
 
+### using Forever
+Forever is a tool that allows Node JS based applications to run as a daemon with start and stop functionality.
+
+
 ## Usage
 Configure settings in `sample_config.json` to your needs.
 
