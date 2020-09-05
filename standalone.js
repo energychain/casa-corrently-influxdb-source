@@ -30,4 +30,5 @@ const updater = async function() {
     sdu("./dependencies.json");
   }
 }
-setInterval(updater,30000);
+setInterval(updater,2000);
+updater();
