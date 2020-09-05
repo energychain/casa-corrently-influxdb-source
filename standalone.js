@@ -1,41 +1,33 @@
-const CasaCorrently = require("casa-corrently");
-const fs = require("fs");
-let doupdates = true;
+const nodemon = require('nodemon');
+let args = "";
+if(process.argv.length == 3) {
+  args=process.argv[2];
+}
 
-const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));
+nodemon({
+  exec: 'node app.js '+args,
+  ext: 'js json',
+  "events": {
+   "restart": "npm install"
+ }
+});
 
-const boot = async function() {
-  let config = {};
-  if(typeof process.env.PORT !== 'undefined') {
-    port = process.env.PORT;
-  }
-  // UUID Persistence
-  if((process.argv.length == 3)&&(await fileExists(process.argv[2]))) {
-    config = JSON.parse(fs.readFileSync(process.argv[2]));
-  } else
-  if(await fileExists("./config.json")) {
-    config = JSON.parse(fs.readFileSync("./config.json"));
-  } else
-  if(await fileExists("./sample_config.json")) {
-    config = JSON.parse(fs.readFileSync("./sample_config.json"));
-  }
-  if(typeof config.uuid == 'undefined') {
-    config.uuid = Math.random(); // Due to node js incompatibility with nanoid or uuid this is a bad fix
-    config.uuid = (""+config.uuid).substring(2) + (Math.random());
-  }
-  const main = await CasaCorrently();
-  config.staticFiles = './node_modules/casa-corrently/public';
-  config.source = __dirname + '/index.js';
-  if(typeof config.autoupdate !== 'undefined') {
-    doupdates = config.autoupdate;
-  }
-  await main.server(config);
+nodemon.on('start', function () {
+  console.log('Casa Corrently (InfluxDB) has started');
+}).on('quit', function () {
+  console.log('Casa Corrently (InfluxDB) has quit');
+  process.exit();
+}).on('restart', function (files) {
+  console.log('Casa Corrently (InfluxDB) restarted due to: ', files);
+});
 
-  if(doupdates) {
-    //const updater = require("simple-dependencies-updater");
-    //updater();
-    //setInterval(updater,60000);
+const sdu = require('simple-dependencies-updater');
+const updater = async function() {
+  const fs = require("fs");
+  const path = require('path');
+  const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));
+  if(await fileExists("./dependencies.json")) {
+    sdu("./dependencies.json");
   }
-};
-
-boot();
+}
+setInterval(updater,30000);
