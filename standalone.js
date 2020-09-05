@@ -1,5 +1,6 @@
 const CasaCorrently = require("casa-corrently");
 const fs = require("fs");
+let doupdates = true;
 
 const fileExists = async path => !!(await fs.promises.stat(path).catch(e => false));
 
@@ -25,8 +26,16 @@ const boot = async function() {
   const main = await CasaCorrently();
   config.staticFiles = './node_modules/casa-corrently/public';
   config.source = __dirname + '/index.js';
-
+  if(typeof config.autoupdate !== 'undefined') {
+    doupdates = config.autoupdate;
+  }
   await main.server(config);
+
+  if(doupdates) {
+    const updater = require("simple-dependencies-updater");
+    updater();
+    setInterval(updater,60000);
+  }
 };
 
 boot();
