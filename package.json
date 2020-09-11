@@ -1,6 +1,6 @@
 {
   "name": "casa-corrently-influxdb-source",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Casa Corrently Source Driver for InfluxDB enabled meters",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/energychain/casa-corrently-influxdb-source#readme",
   "dependencies": {
-    "casa-corrently": "1.0.0",
+    "casa-corrently": "^1.0.14",
     "influx": "5.6.3",
     "simple-dependencies-updater": "^0.9.4"
   },
