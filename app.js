@@ -31,11 +31,6 @@ const boot = async function() {
   }
   await main.server(config);
 
-  if(doupdates) {
-    //const updater = require("simple-dependencies-updater");
-    //updater();
-    //setInterval(updater,60000);
-  }
 };
 
 boot();
